@@ -10,4 +10,4 @@ Over here.
 > Making shadowbanned accounts public toilets is the most powerful weapon
 > against shitheads who invented them!
 
-* [July 20, 2024. Intro](20240729-intro.md)
+* [July 20, 2024. Intro](20240720-intro.md)
