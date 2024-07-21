@@ -69,7 +69,7 @@ apt install tree
 tree  armbian-bsp-cli-myboard-current
 ```
 
-From what I observe, I find the following absolutely unnecessary for Armvuan:
+From what I observe, I find the following looks absolutely unnecessary for Armvuan:
 * `etc/armbian*` files
 * `etc/cron*` directories
 * `etc/network`
@@ -83,7 +83,7 @@ From what I observe, I find the following absolutely unnecessary for Armvuan:
 * `usr/share`
 * `usr/var`
 
-Worth keeping:
+The following is worth keeping:
 * `/etc/apt`
 * `/etc/initramfs`
 * `/etc/kernel`
@@ -91,7 +91,7 @@ Worth keeping:
 * `/etc/sysfs.d`
 * `/etc/udev`
 
-However, I don't see any board-specific stuff there.
+However, I don't see any board-specific stuff so far.
 
 Required files:
 * `etc/armbian-release`: needed by `etc/initramfs/post-update.d/99-uboot` at least
