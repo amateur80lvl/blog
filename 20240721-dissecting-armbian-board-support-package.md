@@ -28,7 +28,7 @@ lib/functions/cli/cli-armvuan.sh:470
 The log had no further explaination of the problem.
 Looking at earlier messages I noticed the output directory in `armbian/.tmp/rootfs-UUID`.
 
-Okay, pathologist's best remedy is drink, I had a long swallow and turned
+Okay, pathologist's best remedy is drinking, I had a long swallow and turned
 to the smelly stuff on my table:
 ```
 chroot armbian/.tmp/rootfs-UUID
