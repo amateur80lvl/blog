@@ -130,18 +130,18 @@ Router structure is quite simple:
         |                   |                   |     |  192.168.1.1     |
         |                   |                   |     |                  |
         |               +-----------------------------+-veth111          |
-        |               |   |                   |     | DNS DNAT         |
+        |               |   |                   |     | 192.168.1.253    |
 +-lxc1--+---------------+--------+              |     |                  |
 |       |               |        |          +---------+-veth211          |
-|     veth100         veth110    |          |   |     |                  |
-| 192.168.240.2   192.168.241.2  |          |   |     |    IoT subnet    |
-| gateway:        route to:      |          |   |     |  192.168.1.0/24  |
-| 192.168.240.1   192.168.1.0/24 |          |   |     |                  |
-|          \      /              |          |   |     |       veth311    |
-|          NAT   NAT             |          |   |     |         |        |
-|            \  /                |          |   |     +---------+--------+
-|  DNS ---- veth120              |          |   |               |
-|          192.168.0.1           |          |   |               |
+|     veth100         veth110    |          |   |     | 192.168.1.251    |
+| 192.168.240.2   192.168.1.254  |          |   |     |                  |
+| gateway:        route to:      |          |   |     |    IoT subnet    |
+| 192.168.240.1   192.168.1.0/24 |          |   |     |  192.168.1.0/24  |
+|          \      /  /           |          |   |     |                  |
+|          NAT  NAT DNS          |          |   |     |      veth311     |
+|            \  /  /             |          |   |     |   192.168.1.249  |
+|           veth120              |          |   |     |         |        |
+|          192.168.0.1           |          |   |     +---------+--------+
 |        default gateway         |          |   |               |
 |              |                 |          |   |               |
 +--------------+-----------------+          |   |               |
@@ -149,7 +149,7 @@ Router structure is quite simple:
                |    +-lxc2--+---------------+--------+          |
                |    |       |               |        |          |
                |    |     veth200         veth210    |          |
-               |    | 192.168.242.2   192.168.243.2  |          |
+               |    | 192.168.242.2   192.168.1.252  |          |
                |    | gateway:        route to:      |          |
                |    | 192.168.242.1   192.168.1.0/24 |          |
                |    |          \       /             |          |
@@ -164,7 +164,7 @@ Router structure is quite simple:
                |                   |    +-lxc3--+---------------+--------+
                |                   |    |       |               |        |
                |                   |    |     veth300         veth310    |
-               |                   |    | 192.168.244.2   192.168.245.2  |
+               |                   |    | 192.168.244.2   192.168.1.250  |
                |                   |    | gateway:        route to:      |
                |                   |    | 192.168.244.1   192.168.1.0/24 |
                |                   |    |          \       /             |
@@ -376,6 +376,7 @@ create_container_interfaces()
     VETH=$1
     ADDR=$2
     IOT_ADDR=$3
+    IOT_LXC_ADDR=$4
 
     # create veth pairs for LXC container
     ip link add dev "${VETH}00" type veth peer name "${VETH}01"
@@ -393,6 +394,7 @@ create_container_interfaces()
     # configure iot end
     ip -n iot address add $IOT_ADDR dev "${VETH}11"
     ip -n iot link set "${VETH}11" up
+    ip -n iot route add ${IOT_LXC_ADDR} dev "${VETH}11"
 }
 
 add_container_routes()
@@ -432,7 +434,6 @@ do_start()
     # reload nftables
     /etc/nftables.conf
     ip netns exec trusted_lan /etc/nftables-trusted.conf
-    ip netns exec iot /etc/nftables-iot.conf
 
     trap '' EXIT
     log_action_end_msg 0
@@ -685,28 +686,6 @@ table ip nat {
 }
 ```
 
-and  `/etc/nftables-iot.conf`:
-```
-#!/usr/sbin/nft -f
-
-flush ruleset
-
-table ip nat {
-    chain prerouting {
-        type nat hook prerouting priority -100; policy accept;
-
-        # DNS DNAT
-        iifname veth111 udp dport 53 dnat to 192.168.241.2:53
-        iifname veth111 tcp dport 53 dnat to 192.168.241.2:53
-    }
-    chain postrouting {
-        type nat hook postrouting priority 100; policy accept;
-
-        masquerade random,persistent
-    }
-}
-```
-
 Let's setup wireguard interface.
 I use my [wgman](https://github.com/amateur80lvl/wgman) suite.
 
@@ -732,7 +711,7 @@ server_port: 10999
 use_preshared_key: true
 
 default_route: false
-dns: 192.168.241.2
+dns: 192.168.1.254
 ```
 
 and run
