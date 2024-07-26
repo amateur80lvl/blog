@@ -39,8 +39,8 @@ from higher level down to the ARP protocol.
 I felt myself like a suspect. Or a potential victim.
 They would understand nothing if I told them that there are simply containers
 on my three SBCs.
-But they are pretty sure there's a lot of valuable hardware in the suite 13,
-666 Mazafaka street Horsedick city.
+But they are pretty sure there's a lot of valuable hardware in the suite 13
+at 666 Mazafaka street Horsedick city.
 
 ## Requirements
 
@@ -107,7 +107,7 @@ veth naming:
 
 For example, veth321 is an interface number 2 paired with veth320 in container 3
 
-Router structure is quite simple:
+Router structure is pretty simple:
 ```
                       Untrusted LAN
                       192.168.0.0/24
