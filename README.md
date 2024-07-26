@@ -3,6 +3,11 @@
 I try to keep my hate speech inside but when I choke full of it I have to puke it out.
 Over here.
 
+> Most of the time I'm a dog. Missed "read only" among composefs features.
+> Am I the only one who fancies read-write?
+
+* [July 26, 2024. Securing home network](20240726-securing-home-network.md)
+
 > Hackers is the main problem of the IT industry.
 > Their typical portrait is an arrogant Mac user coming from their popular news site,
 > as I observe from my nginx log.
