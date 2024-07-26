@@ -81,8 +81,8 @@ IP address and the default gateway.
 But there's one problem. What if I want to connect to my trusted LAN via WiFi?
 For example, I might want to control some of my IoT devices from smartphone.
 Wireguard could be the simplest solution: I tap on home VPN and get in.
-But I won't be able to connect to the trusted LAN directly and that's very good.
-For WiFi, I woudld need a separate subnet, let's call it IoT subnet.
+But I won't be able to connect to the trusted LAN directly and that's very good, indeed.
+For WiFi, I would need a separate subnet, let's call it IoT subnet.
 
 Also, I want  a couple of VPNs in the trusted LAN.
 They should be exposed as another gateways, say 192.168.0.2 and 192.168.0.3.
@@ -90,7 +90,7 @@ I may want a Tor service, exposing its SOCKS5 port.
 And I want a DNS resolver working via VPN.
 
 And the last point: plausible deniability matters.
-If shit ever happen and they seize my hardware, I don't want they know
+If shit ever to happen and they seize my hardware, I don't want they know
 I used VPN and Tor.
 Of course I can't hide VPN traffic, which, however, may look like SSH or HTTP,
 but I can hide the originator.
@@ -523,9 +523,9 @@ for f in /etc/service/getty* ; do unlink $f ; done
 ```
 
 and take `/etc/runit/boot-run` scripts from
-[lxcex](https://github.com/amateur80lvl/lxcex/tree/3f3a6b0e3473cd167be0222006b5866ce161bac6/containers/base/rootfs/etc/runit/boot-run)
+[lxcex](https://github.com/amateur80lvl/lxcex/tree/3f3a6b0e3473cd167be0222006b5866ce161bac6/containers/base/rootfs/etc/runit/boot-run).
 
-finally, make changes to `/etc/nftables.conf`:
+Finally, make changes to `/etc/nftables.conf`:
 ```
 #!/usr/sbin/nft -f
 
@@ -849,7 +849,7 @@ router        A   192.168.0.2
 ```
 
 `rpz-filter` is generated from https://github.com/StevenBlack/hosts
-by a script based on circuitshelter's one[^6].
+by a script based on [circuitshelter's one](https://www.circuitshelter.com/posts/bind9-rpz-firewall/).
 To avoid installing yet another python in the container,
 let's generate it on the host side:
 ```python
@@ -904,10 +904,10 @@ Bye for now.
 
 ## References
 
-[^1]: [Introduction to Linux interfaces for virtual networking](https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking)
-[^2]: [Namespaces in operation, part 7: Network namespaces](https://lwn.net/Articles/580893/)
-[^3]: [Routing & Network Namespaces](https://www.wireguard.com/netns/)
-[^4]: [Netfilter hooks](https://wiki.nftables.org/wiki-nftables/index.php/Netfilter_hooks)
-[^5]: https://github.com/StevenBlack/hosts
-[^6]: [Using BIND 9 RPZ as DNS firewall](https://www.circuitshelter.com/posts/bind9-rpz-firewall/)
-[^7]: [Overriding DNS for fun and profit](https://www.redpill-linpro.com/techblog/2015/12/08/dns-rpz.html)
+* [Introduction to Linux interfaces for virtual networking](https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking)
+* [Namespaces in operation, part 7: Network namespaces](https://lwn.net/Articles/580893/)
+* [Routing & Network Namespaces](https://www.wireguard.com/netns/)
+* [Netfilter hooks](https://wiki.nftables.org/wiki-nftables/index.php/Netfilter_hooks)
+* https://github.com/StevenBlack/hosts
+* [Using BIND 9 RPZ as DNS firewall](https://www.circuitshelter.com/posts/bind9-rpz-firewall/)
+* [Overriding DNS for fun and profit](https://www.redpill-linpro.com/techblog/2015/12/08/dns-rpz.html)
