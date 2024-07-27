@@ -130,19 +130,19 @@ Router structure is pretty simple:
         |                   |                   |     |  192.168.1.1     |
         |                   |                   |     |                  |
         |               +-----------------------------+-veth111          |
-        |               |   |                   |     | 192.168.1.253    |
-+-lxc1--+---------------+--------+              |     |                  |
-|       |               |        |          +---------+-veth211          |
-|     veth100         veth110    |          |   |     | 192.168.1.251    |
-| 192.168.240.2   192.168.1.254  |          |   |     |                  |
-| gateway:        route to:      |          |   |     |    IoT subnet    |
-| 192.168.240.1   192.168.1.0/24 |          |   |     |  192.168.1.0/24  |
-|          \      /  /           |          |   |     |                  |
-|          NAT  NAT DNS          |          |   |     |      veth311     |
-|            \  /  /             |          |   |     |   192.168.1.249  |
-|           veth120              |          |   |     |         |        |
-|          192.168.0.1           |          |   |     +---------+--------+
-|        default gateway         |          |   |               |
+        |               |   |                   |     | DNS DNAT         |
++-lxc1--+---------------+--------+              |     | 192.168.1.253    |
+|       |               |        |              |     |                  |
+|     veth100         veth110    |          +---------+-veth211          |
+| 192.168.240.2   192.168.1.254  |          |   |     | 192.168.1.251    |
+| gateway:        route to:      |          |   |     |                  |
+| 192.168.240.1   192.168.1.0/24 |          |   |     |    IoT subnet    |
+|          \      /  /           |          |   |     |  192.168.1.0/24  |
+|          NAT  NAT DNS          |          |   |     |                  |
+|            \  /  /             |          |   |     |      veth311     |
+|           veth120              |          |   |     |   192.168.1.249  |
+|          192.168.0.1           |          |   |     |         |        |
+|        default gateway         |          |   |     +---------+--------+
 |              |                 |          |   |               |
 +--------------+-----------------+          |   |               |
                |            |               |   |               |
@@ -434,6 +434,7 @@ do_start()
     # reload nftables
     /etc/nftables.conf
     ip netns exec trusted_lan /etc/nftables-trusted.conf
+    ip netns exec iot /etc/nftables-iot.conf
 
     trap '' EXIT
     log_action_end_msg 0
@@ -665,7 +666,7 @@ table ip nat {
 }
 ```
 
-And create `/etc/nftables-trusted.conf`:
+Create `/etc/nftables-trusted.conf`:
 ```
 #!/usr/sbin/nft -f
 
@@ -682,6 +683,28 @@ table ip nat {
         type nat hook postrouting priority 100; policy accept;
 
         oif { veth_ssh_ext, veth_ssh_int }  masquerade random,persistent
+    }
+}
+```
+
+and `/etc/nftables-trusted.conf`:
+```
+#!/usr/sbin/nft -f
+
+flush ruleset
+
+table ip nat {
+    chain prerouting {
+        type nat hook prerouting priority -100; policy accept;
+
+        # DNS DNAT
+        iifname veth111 udp dport 53 dnat to 192.168.1.254:53
+        iifname veth111 tcp dport 53 dnat to 192.168.1.254:53
+    }
+    chain postrouting {
+        type nat hook postrouting priority 100; policy accept;
+
+        masquerade random,persistent
     }
 }
 ```
