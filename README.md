@@ -3,6 +3,20 @@
 I try to keep my hate speech inside but when I choke full of it I have to puke it out.
 Over here.
 
+> Now and again I hear communication is a key for writing good software.
+> But from my observations, collective mind very often produces shit
+> that influences weaker minds.
+>
+> It's contagious.
+>
+> Stop communicating. Don't discuss anything with anyone. Just code.
+> Unless you do that for living. But you're a slave then and should
+> obey your manager.
+
+* [July 29, 2024. My long way back to C part 2: Arena allocator](20240729-arena-allocator.md)
+* [July 29, 2024. My long way back to C part 1: Tears, snot, and sorrow](20240729-tears-snot-and-sorrow.md)<br>
+  *Under music: Filter, My long way to jail.*
+
 > Most of the time I'm a dog. Missed "read only" among composefs features.
 > Am I the only one who fancies read-write?
 
