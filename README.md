@@ -13,14 +13,14 @@ Over here.
 > Unless you do that for living. But you're a slave then and should
 > obey your manager.
 
-* [July 29, 2024. My long way back to C part 2: Arena allocator](20240729-arena-allocator.md)
-* [July 29, 2024. My long way back to C part 1: Tears, snot, and sorrow](20240729-tears-snot-and-sorrow.md)<br>
+* [July 29, 2024. My long way back to C part 2: Arena allocator](posts/20240729-arena-allocator.md)
+* [July 29, 2024. My long way back to C part 1: Tears, snot, and sorrow](posts/20240729-tears-snot-and-sorrow.md)<br>
   *Under music: Filter, My long way to jail.*
 
 > Most of the time I'm a dog. Missed "read only" among composefs features.
 > Am I the only one who fancies read-write?
 
-* [July 26, 2024. Securing home network](20240726-securing-home-network.md)
+* [July 26, 2024. Securing home network](posts/20240726-securing-home-network.md)
 
 > Hackers is the main problem of the IT industry.
 > Their typical portrait is an arrogant Mac user coming from their popular news site,
@@ -30,7 +30,7 @@ Over here.
 > Good software needs good thinking and a good programmer is an
 > extremely thoughtful person, who ultimately only thinks and writes no code.
 
-* [July 21, 2024. Dissecting Armbian's board support package](20240721-dissecting-armbian-board-support-package.md)
+* [July 21, 2024. Dissecting Armbian's board support package](posts/20240721-dissecting-armbian-board-support-package.md)
 
 > Of course, they can shadowban me. That's why you must fork all my repos.
 > By the way, I think the best practice against shadowbans would be
