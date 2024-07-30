@@ -9,9 +9,10 @@ Over here.
 >
 > It's contagious.
 >
-> Stop communicating. Don't discuss anything with anyone. Just code.
-> Unless you do that for living. But you're a slave then and should
-> obey your manager.
+> Stop communicating. Don't discuss anything with anyone.
+> Just write your code no matter how smelly it is.
+> In no circumstances do that for living.
+> That makes you a slave obeying retarded managers and clients.
 
 * [July 29, 2024. My long way back to C part 2: Arena allocator](posts/20240729-arena-allocator.md)
 * [July 29, 2024. My long way back to C part 1: Tears, snot, and sorrow](posts/20240729-tears-snot-and-sorrow.md)<br>
