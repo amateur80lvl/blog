@@ -70,7 +70,7 @@ it's a reference, indeed:
 
 So let's always pass pointers across context boundaries by reference.
 Namely, references should be used as function arguments.
-However, return values are a bit different thing.
+However, return values is a bit different thing.
 They are ephemeral references, when a pointer is in transit
 from a callee to the caller.
 I'll explain this below.
