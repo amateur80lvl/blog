@@ -3,6 +3,26 @@
 I try to keep my hate speech inside but when I choke full of it I have to puke it out.
 Over here.
 
+> If you ever meet a person who uses tabs instead of spaces, shoot them,
+> stab them, choke them.
+>
+> Poison them at last if none of above works.
+>
+> Unless they uses an old good mechanical typewriter, of course.
+> That's the only excuse.
+>
+> In computers, tabs should be banned because it's mammoth feces.
+> Supporting them adds a lot of headache.
+> What if you have to track tabs even in string values
+> to properly process the next line of human-friendly markup?
+> Now do you express that in BNF?
+> Oh, sorry. Modern way is PEG. Anyway, how?
+>
+> Fuck.
+
+* [August 10, 2024. My long way back to C part 3: Automatic memory management](posts/20240810-automatic-memory-management.md)<br>
+  *Under music: Filter, My long way to jail.*
+
 > Now and again I hear communication is a key for writing good software.
 > But from my observations, collective mind very often produces shit
 > that influences weaker minds.
