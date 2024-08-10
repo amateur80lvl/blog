@@ -45,7 +45,7 @@ Over here.
 
 > Hackers is the main problem of the IT industry.
 > Their typical portrait is an arrogant Mac user coming from their popular news site,
-> as I observe from my nginx log.
+> as I observe in my nginx log.
 > Can they produce anything but shit at their hackatons?
 > Obviously, no.
 > Good software needs good thinking and a good programmer is an
