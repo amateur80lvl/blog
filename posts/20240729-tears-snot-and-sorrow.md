@@ -54,4 +54,4 @@ and realized that C++ still sucks:
 
 I started rewriting it in pure C. That had the immediate result: the include file became
 much more straightforward and readable. But I realized I need an underlying thing:
-[arena allocator](20240728-arena-allocator.md).
+[arena allocator](20240729-arena-allocator.md).
